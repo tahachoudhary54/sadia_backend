@@ -1,0 +1,222 @@
+import transporter from "../config/mail.js";
+
+/**
+ * Premium Luxury HTML Email Template generator (Black & Gold)
+ * @param {string} name - Patron's full name
+ * @param {string} otp - Secure 6-digit OTP code
+ */
+const getLuxuryOTPTemplate = (name, otp) => {
+  return `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Sadia Fragrance Account</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #050505;
+        font-family: 'Playfair Display', 'Didot', 'Georgia', serif;
+        -webkit-font-smoothing: antialiased;
+        color: #e5e5e5;
+      }
+      .wrapper {
+        width: 100%;
+        background-color: #050505;
+        padding: 40px 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #0b0b0b;
+        border: 1px solid #c5a880; /* Elegant gold border */
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      }
+      .header {
+        background-color: #0b0b0b;
+        padding: 40px 20px 20px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+      }
+      .logo {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #d4af37; /* Luxury Gold color */
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      }
+      .subtitle {
+        font-size: 10px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: #c5a880;
+        margin: 8px 0 0 0;
+        opacity: 0.8;
+      }
+      .content {
+        padding: 40px 50px;
+        text-align: center;
+        background-image: radial-gradient(circle at center, #141414 0%, #0b0b0b 100%);
+      }
+      .greeting {
+        font-size: 20px;
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+      }
+      .message {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #bfa17a;
+        margin-bottom: 35px;
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 300;
+      }
+      .otp-box {
+        display: inline-block;
+        background-color: #000000;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 4px;
+        padding: 18px 40px;
+        margin: 10px 0 30px 0;
+        box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.05), 0 4px 10px rgba(0,0,0,0.3);
+      }
+      .otp-code {
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        color: #d4af37;
+        margin: 0;
+        padding-left: 0.25em; /* Balance centering with letter-spacing */
+      }
+      .expiry-alert {
+        font-size: 11px;
+        color: #c5a880;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 10px;
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      }
+      .expiry-sub {
+        font-size: 12px;
+        color: rgba(229, 229, 229, 0.5);
+        margin-bottom: 40px;
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 300;
+      }
+      .divider {
+        width: 60px;
+        height: 1px;
+        background-color: #d4af37;
+        margin: 0 auto 30px auto;
+        opacity: 0.6;
+      }
+      .footer {
+        background-color: #050505;
+        padding: 30px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(197, 168, 128, 0.1);
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      }
+      .footer-text {
+        font-size: 11px;
+        color: rgba(229, 229, 229, 0.4);
+        line-height: 1.6;
+        letter-spacing: 0.1em;
+        margin: 0 0 15px 0;
+      }
+      .footer-links {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #d4af37;
+      }
+      @media only screen and (max-width: 600px) {
+        .content {
+          padding: 30px 25px;
+        }
+        .greeting {
+          font-size: 18px;
+        }
+        .message {
+          font-size: 13px;
+        }
+        .otp-code {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <!-- Brand Header -->
+        <div class="header">
+          <h1 class="logo">Sadia Fragrance</h1>
+          <p class="subtitle">Maison De L'attar Exquisite</p>
+        </div>
+        
+        <!-- Interactive OTP Content -->
+        <div class="content">
+          <div class="greeting">Welcome to Sadia Fragrance, ${name}</div>
+          <p class="message">
+            Thank you for enlisting with Sadia Fragrance. To complete your identity verification, please use the following one-time passcode (OTP):
+          </p>
+          
+          <div class="otp-box">
+            <h2 class="otp-code">${otp}</h2>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <div class="expiry-alert">EXPIRES IN 5 MINUTES</div>
+          <div class="expiry-sub">This unique authentication credential will expire soon. Please do not share this code.</div>
+        </div>
+        
+        <!-- Elegant Footer -->
+        <div class="footer">
+          <p class="footer-text">
+            You are receiving this email because you initiated an registration process on sadiafragrance.com.<br>
+            If you did not make this request, please disregard this email safely.
+          </p>
+          <div class="footer-links">
+            PARIS &bull; DUBAI &bull; NEW DELHI
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
+  `;
+};
+
+/**
+ * Send OTP Email
+ * @param {string} email - Recipient email address
+ * @param {string} name - Recipient name
+ * @param {string} otp - Plain 6-digit OTP code
+ */
+export const sendOtpEmail = async (email, name, otp) => {
+  const mailOptions = {
+    from: `"Sadia Fragrance" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: "Verify Your Sadia Fragrance Account",
+    html: getLuxuryOTPTemplate(name, otp)
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`[Email] OTP email sent successfully to ${email}. MessageId: ${info.messageId}`);
+    return info;
+  } catch (error) {
+    console.error("[Email Error] Failed to send OTP email:", error);
+    throw new Error(`Failed to send verification email: ${error.message}`);
+  }
+};
